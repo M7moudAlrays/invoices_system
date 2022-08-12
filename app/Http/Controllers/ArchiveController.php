@@ -70,9 +70,13 @@ class ArchiveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->invoice_id ;
+        $in = invoices::withTrashed()->where('id' ,$id)->restore();
+
+        session()->flash('restore_invoice');
+        return redirect ('/invoices');
     }
 
     /**
@@ -81,8 +85,12 @@ class ArchiveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->invoice_id ;
+        $inv =invoices::withTrashed()->where('id',$id)->first();
+        $inv->forceDelete();
+        session()->flash('delete_invoice');
+        return redirect ('/archive') ;
     }
 }

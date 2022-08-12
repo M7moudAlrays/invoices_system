@@ -2,14 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\InvoicesExport;
 use App\Models\invoice_attachments;
 use App\Models\invoices;
 use App\Models\invoices_details;
 use App\Models\sections;
+use App\Models\User;
+use App\Notifications\AddInvoice;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+
+
+
 
 class InvoicesController extends Controller
 { 
@@ -94,6 +102,11 @@ class InvoicesController extends Controller
                 $imageName = $request->pic->getClientOriginalName();
                 $request->pic->move(public_path('Attachments/' . $invoice_number), $imageName);
             }
+
+            // $user = User::first() ;
+            // // Notification::send($user , new AddInvoice($invoice_id)) ;
+            // $user->notify (new AddInvoice($invoice_id)) ;
+
             session()->flash('Add', 'تم اضافة الفاتوره بنجاح ');
             return back() ;
     }
@@ -263,6 +276,20 @@ class InvoicesController extends Controller
         $invoices = invoices::where('Value_Status', 3)->get();
         $section = sections::all() ;
         return view('invoices.invoices_Partial', compact('invoices', 'section')) ;
+    }
+
+
+    public function Print_invoice($id)
+    {
+        $invoices = invoices::where('id', $id)->first();
+        $section = sections::all() ;
+        return view('invoices.Print_invoice',compact('invoices','section'));
+    }
+   
+
+    public function export() 
+    {
+        return Excel::download(new InvoicesExport, 'شيت الفواتير.xls');
     }
 
 }

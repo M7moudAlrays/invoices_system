@@ -51,17 +51,14 @@
 
         </script>
     @endif
+    
 
     <!-- row -->
     <div class="row">
         <!--div-->
         <div class="col-xl-12">
             <div class="card mg-b-20">
-                <div class="card-header pb-0">
-                    <div class="d-flex justify-content-between">
-
-                    </div>
-                </div>
+                
                 <div class="card-body">
                     <div class="table-responsive">
                         <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'>
@@ -103,19 +100,15 @@
                                         <td>{{ $invoice->Rate_VAT }}</td>
                                         <td>{{ $invoice->Value_VAT }}</td>
                                         <td>{{ $invoice->Total }}</td>
-                                        <td>
-                                            <span class="badge badge-success">{{ $invoice->Status }}</span>
-                                        </td
-                                    
+
                                         <td>
                                             @if ($invoice->Value_Status == 1)
-                                                <span class="text-success">{{ $invoice->Status }}</span>
-                                            @elseif($invoice->Value_Status == 2)
-                                                <span class="text-danger">{{ $invoice->Status }}</span>
-                                            @else
-                                                <span class="text-warning">{{ $invoice->Status }}</span>
+                                                <span class="badge badge-success"> {{$invoice->Status}} </span>
+                                                @elseif ($invoice->Value_Status == 2)
+                                                <span class="badge badge-danger"> {{$invoice->Status}} </span>
+                                                @else 
+                                                <span class="badge badge-warning"> {{$invoice->Status}} </span>
                                             @endif
-
                                         </td>
 
                                         <td>{{ $invoice->note }}</td>
@@ -125,7 +118,7 @@
                                                     class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
                                                     type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
                                                 <div class="dropdown-menu tx-13">
-                                                    <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
+                                                    <a class="dropdown-item" href="" data-invoice_id="{{ $invoice->id }}"
                                                         data-toggle="modal" data-target="#Transfer_invoice"><i
                                                             class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي
                                                         الفواتير</a>
@@ -159,7 +152,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('invoices.destroy','w') }}" method="post">
+                    <form action="{{ route('archive.destroy','w') }}" method="post">
                         {{ method_field('delete') }}
                         {{ csrf_field() }}
                 </div>
@@ -186,20 +179,20 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="" method="post">
+                </div>
+                    <form action="{{ route('archive.update','ss') }}" method="post">
                         {{ method_field('patch') }}
                         {{ csrf_field() }}
-                </div>
-                <div class="modal-body">
-                    هل انت متاكد من عملية لغاءالارشفة ؟
-                    <input type="hidden" name="invoice_id" id="invoice_id" value="">
+                        <div class="modal-body">
+                            هل انت متاكد من عملية لغاءالارشفة ؟
+                            <input type="hidden" name="invoice_id" id="invoice_id" value="">
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
-                    <button type="submit" class="btn btn-success">تاكيد</button>
-                </div>
-                </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
+                            <button type="submit" class="btn btn-success">تاكيد</button>
+                        </div>
+                    </form>
             </div>
         </div>
     </div>

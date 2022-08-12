@@ -29,7 +29,7 @@
 @section('content')
 
 @if (session()->has('edit'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-warrning alert-dismissible fade show" role="alert">
             <strong>{{ session()->get('edit') }}</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -62,24 +62,35 @@
         </script>
 @endif
 
-
+@if (session()->has('restore_invoice'))
+        <script>
+            window.onload = function() 
+			{
+                notif({
+                    msg: "تم استرجاع الفاتورة بنجاح",
+                    type: "success"
+                })
+            }
+        </script>
+@endif
 					<!--div-->
 					<div class="col-xl-12">
 						<div class="card mg-b-20">
+
 							<div class="card-header pb-0">
-								<div class="d-flex justify-content-between">
-									<h4 class="card-title mg-b-0">Bordered Table</h4>
-									<i class="mdi mdi-dots-horizontal text-gray"></i>
-								</div>
-								<div class="card-header pb-0">
-									<div class="card-header pb-0">
+								<a href="{{route('Exp_Inv')}}" class="modal-effect btn btn-m btn-success" style="color:white">
+									<i class="fas fa-file-export"> </i>&nbsp;تصديـــر فاتورة
+								</a>
+
+							</div>
+
+							<div class="card-header pb-0">
 										{{-- @can('اضافة فاتورة') --}}
 											<a href="invoices/create" class="modal-effect btn btn-sm btn-primary" style="color:white"><i
-													class="fas fa-plus"></i>&nbsp; اضافة فاتورة</a>
-										{{-- @endcan --}}				
-									</div>
-								</div>
+													class="fas fa-plus"></i>&nbsp; اضافة فاتورة
+											</a>					
 							</div>
+							
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="example" class="table key-buttons text-md-nowrap">
@@ -148,6 +159,11 @@
                                                             	data-toggle="modal" data-target="#Transfer_invoice">
 																<i class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;  نقل إلي الأرشيف
 															</a>
+
+															<a class="dropdown-item" href="{{route ('print_invoice',$invoice->id)}}" >
+																<i class="text-info fas fa-exchange-alt"></i>&nbsp;&nbsp; طباعة الفاتورة
+															</a>
+
 														</div>
 													</div>
 												</td>
