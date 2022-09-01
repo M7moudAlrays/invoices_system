@@ -10,6 +10,13 @@ use Hash;
 
 class UserController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:قائمة المستخدمين', ['only' => ['index']]);
+        $this->middleware('permission:اضافة مستخدم', ['only' => ['create','store']]);
+        $this->middleware('permission:تعديل مستخدم', ['only' => ['edit','update']]);
+        $this->middleware('permission:حذف مستخدم', ['only' => ['destroy']]);
+    }
     
     public function index(Request $request)
     {
@@ -76,10 +83,10 @@ class UserController extends Controller
         ->with('success','User updated successfully');
     }
     
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = $request->user_id ;
         User::find($id)->delete();
-        return redirect()->route('users.index')
-        ->with('success','User deleted successfully');
+        return redirect()->route('users.index')->with('success','User deleted successfully');
     }
 }

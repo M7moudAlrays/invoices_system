@@ -62,8 +62,9 @@ $permissions =
         'حذف قسم',
         'الاشعارات'
 ];
-foreach ($permissions as $permission) {
-Permission::create(['name' => $permission]);
+foreach ($permissions as $permission) 
+{
+        Permission::create(['name' => $permission]);
 }
 }
 }

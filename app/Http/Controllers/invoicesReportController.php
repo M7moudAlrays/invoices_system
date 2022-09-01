@@ -52,4 +52,9 @@ class invoicesReportController extends Controller
         }
      
     }
+
+    public function gfg ()
+    {
+        return 'aaaaaa' ;
+    }
 }

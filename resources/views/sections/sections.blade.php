@@ -19,8 +19,10 @@
 			<div class="d-flex">
 				<h2 class="content-title mb-0"> الأقســـام  </h2>
 			</div>
-			<div class="card-body">						
-				<a class="btn ripple btn-primary" data-target="#modaldemo1" data-toggle="modal" href="">إضافة قســم</a>
+			<div class="card-body">	
+				@can('اضافة قسم')					
+					<a class="btn ripple btn-primary" data-target="#modaldemo1" data-toggle="modal" href="">إضافة قســم</a>
+				@endcan
 			</div>
 			@if ($errors->any())
 				<div class="alert alert-danger">
@@ -82,20 +84,22 @@
 									<td>{{$section->section_name}}</td>	
 									<td>{{$section->description}}</td>
 									<td>						
-                                            {{-- @can('تعديل قسم') --}}
+                                            @can('تعديل قسم')
                                                 <button class="btn btn-outline-success btn-sm"
 												data-id="{{ $section->id }}" 
 												data-section_name="{{ $section->section_name }}"
 												data-description="{{ $section->description }}"
 												data-toggle="modal"
                                                 data-target="#exampleModal2">تعديل</button>
-                                            {{-- @endcan --}}
+                                            @endcan
 
+											@can('حذف قسم')
                                                 <button class="btn btn-outline-danger btn-sm" 
 														data-id="{{ $section->id }}" 
 														data-section_name="{{ $section->section_name }}" 
 														data-toggle="modal"
-                                                    	data-target="#modaldemo9">حذف</button>     
+                                                    	data-target="#modaldemo9">حذف</button> 
+											@endcan    
                                     </td>																													
 								</tr>	
 							@endforeach																											
@@ -130,10 +134,10 @@
 									</div>
 								</form>
 							</div>
-							<div class="modal-footer">
+							{{-- <div class="modal-footer">
 								<button class="btn ripple btn-primary" type="button">Save changes</button>
 								<button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 				</div>
