@@ -30,17 +30,17 @@ class SectionsController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate
-        (
-            [
-            'section_name' => 'required|unique:sections|max:255',
-            ],
+        // $request->validate
+        // (
+        //     [
+        //     'section_name' => 'required|unique:sections|max:255',
+        //     ],
             
-            [
-            'section_name.required' =>'يرجي ادخال اسم القسم',
-            'section_name.unique' =>'اسم القسم مسجل مسبقا',
-            ]
-        );
+        //     [
+        //     'section_name.required' =>'يرجي ادخال اسم القسم',
+        //     'section_name.unique' =>'اسم القسم مسجل مسبقا',
+        //     ]
+        // );
 
             sections::create
             (

@@ -63,7 +63,7 @@
 										<span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-up text-white"></i>
 											<span class="text-white op-7">
-												{{App\models\invoices::count() / App\models\invoices::count() * 100}}%
+												{{-- {{App\models\invoices::count() / App\models\invoices::count() * 100}}% --}}
 											</span>
 										</span>
 									</div>
@@ -98,7 +98,7 @@
 										<span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-up text-white"></i>
 											<span class="text-white op-7">
-												{{App\models\invoices::where('Value_status','=',1)->count() / App\models\invoices::count() * 100}}%
+												{{-- {{App\models\invoices::where('Value_status','=',1)->count() / App\models\invoices::count() * 100}}% --}}
 											</span>
 										</span>
 									</div>
@@ -132,7 +132,7 @@
 										<span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-down text-white"></i>
 											<span class="text-white op-7">
-												{{App\models\invoices::where('Value_status','=',2)->count() / App\models\invoices::count() * 100}}%
+												{{-- {{App\models\invoices::where('Value_status','=',2)->count() / App\models\invoices::count() * 100}}% --}}
 											</span>
 										</span>
 									</div>
@@ -166,7 +166,7 @@
 										<span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-down text-white"></i>
 											<span class="text-white op-7">
-												{{App\models\invoices::where('Value_status','=',3)->count() / App\models\invoices::count() * 100}}%
+												{{-- {{App\models\invoices::where('Value_status','=',3)->count() / App\models\invoices::count() * 100}}% --}}
 											</span>
 										</span>
 									</div>

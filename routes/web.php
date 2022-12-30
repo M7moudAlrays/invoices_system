@@ -20,6 +20,7 @@ Route::get('/', function ()
     return view('Auth.login');
 });
 
+
 Auth::routes();
 Auth::routes(['register' => false]);
 

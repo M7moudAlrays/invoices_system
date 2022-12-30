@@ -65,7 +65,7 @@
                                                     </button>
                                                     </form>
 												</form>
-													<a class="slide-item btn btn-main-primary" href="{{ url('/' . $page='register') }}"> {{_('Sign in')}} 
+													{{-- <a class="slide-item btn btn-main-primary" href="{{ url('/' . $page='register') }}"> {{_('Sign in')}}  --}}
 													</a>																													
 											</div>
 										</div>
